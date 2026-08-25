@@ -1,0 +1,1013 @@
+/* ==========================================================================
+   Furniture Pros — Landing Page
+   Art direction per design.md: warm ivory ground, editorial asymmetry,
+   photography and typography doing the work. No cards, no shadows, no gradients.
+   ========================================================================== */
+
+/* ---- Tokens ------------------------------------------------------------- */
+:root {
+  /* Palette — design.md */
+  --ivory:        #F2EBDD;
+  --parchment:    #E4D9C6;
+  --olive:        #46553A;
+  --deep-olive:   #303B2B;
+  --walnut:       #553A27;
+  --dark-walnut:  #34251C;
+  --brass:        #A38655;
+  --brass-light:  #C4A87A;   /* brass on deep olive / dark walnut, for AA */
+  --ink:          #29251F;
+
+  /* Derived */
+  --ink-soft:     #5F564B;
+  --ink-faint:    #665D51;   /* darkened: #8A7F71 was 3.31:1 on ivory, below AA */
+  --rule:         rgba(41, 37, 31, 0.16);
+  --rule-soft:    rgba(41, 37, 31, 0.09);
+  --rule-light:   rgba(242, 235, 221, 0.22);
+
+  /* Type */
+  --serif: "DM Serif Display", "Georgia", "Times New Roman", serif;
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Rhythm */
+  --shell:     1320px;
+  --gutter:    clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(4.5rem, 11vw, 9.5rem);
+
+  /* 100vw includes the scrollbar; --sbw is set from JS so the full-bleed
+     figures land exactly on the viewport edge instead of ~8px past it */
+  --sbw: 0px;
+  --vw: calc(100vw - var(--sbw));
+
+  --radius: 2px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---- Reset -------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1.06; }
+p { margin: 0; }
+/* figure carries a 40px side margin by default — it silently shrinks every
+   before/after image and knocks the pair columns out of alignment */
+figure, figcaption, dl, dd { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--deep-olive); color: var(--ivory);
+  padding: 0.85rem 1.25rem; text-decoration: none;
+  font-size: 0.875rem; letter-spacing: 0.04em;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 3px;
+}
+
+/* ---- Layout primitives -------------------------------------------------- */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); }
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 1.5rem;
+}
+.eyebrow--light { color: var(--brass-light); }
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.25rem, 1.35rem + 3.9vw, 4rem);
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.section-title--light { color: var(--ivory); }
+
+.section-head { margin-bottom: clamp(2.75rem, 6vw, 4.5rem); }
+
+.section-head--split {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+.section-head__aside {
+  color: var(--ink-soft);
+  max-width: 42ch;
+  font-size: 1.0625rem;
+}
+
+/* ---- Buttons & links ---------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.0625rem 2.125rem;
+  border: 1px solid var(--deep-olive);
+  border-radius: var(--radius);
+  background: var(--deep-olive);
+  color: var(--ivory);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+.btn:hover { background: var(--walnut); border-color: var(--walnut); }
+.btn--sm { padding: 0.75rem 1.375rem; font-size: 0.75rem; }
+.btn--block { width: 100%; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.link-arrow {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding-bottom: 3px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.4s var(--ease);
+}
+.link-arrow::after { content: " \2192"; }
+.link-arrow:hover { background-size: 0% 1px; }
+.link-arrow--light { color: var(--ivory); }
+
+/* ---- Figures & image fallback ------------------------------------------- */
+.fig {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--parchment);
+}
+.fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s var(--ease);
+}
+.fig--4x5 { aspect-ratio: 4 / 5; }
+.fig--3x2 { aspect-ratio: 3 / 2; }
+.fig--2x3 { aspect-ratio: 2 / 3; }
+.fig--1x1 { aspect-ratio: 1 / 1; }
+
+/* The real photos come in at very different ratios, so a few need their crop
+   biased away from dead centre to keep the whole piece in frame. */
+.obj-top { object-position: center top; }
+.obj-low { object-position: center 55%; }
+
+/* Tonal placeholder shown when a photo hasn't been added yet */
+.fig.is-empty img { display: none; }
+.fig.is-empty {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(85, 58, 39, 0.045) 0 14px,
+      rgba(85, 58, 39, 0)   14px 28px
+    ),
+    var(--parchment);
+}
+.fig.is-empty::after {
+  content: attr(data-empty-label);
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem 1.125rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.fig__stamp {
+  position: absolute;
+  left: 0; bottom: 0;
+  background: var(--ivory);
+  color: var(--olive);
+  padding: 0.9rem 1.25rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--ivory);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s var(--ease);
+}
+.site-header.is-stuck { border-bottom-color: var(--rule-soft); }
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand__mark { width: 40px; height: 40px; color: var(--olive); flex: none; }
+.brand__text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand__name {
+  font-family: var(--serif);
+  font-size: 1.3125rem;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+}
+.brand__tag {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.site-nav { display: none; gap: 2rem; }
+.site-nav a {
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--olive); }
+
+.site-header__actions { display: flex; align-items: center; gap: 1.5rem; }
+.tel-link {
+  display: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.tel-link:hover { color: var(--olive); }
+.site-header__actions .btn { display: none; }
+
+@media (min-width: 62em) {
+  .site-nav,
+  .tel-link { display: flex; }
+  .site-header__actions .btn { display: inline-flex; }
+}
+
+/* ==========================================================================
+   1 · Hero
+   ========================================================================== */
+.hero {
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.hero__inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: center;
+}
+
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 1.6rem + 6.2vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.022em;
+  margin-bottom: 1.75rem;
+}
+
+.hero__lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 2.5rem;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.hero__note {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+  max-width: 40ch;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* No max-height here: capping the block size against `aspect-ratio: 4/5` makes
+   the browser shrink the *width* to keep the ratio, which defeats the bleed
+   below and leaves a gap at the right edge. The 4:5 crop governs instead, and
+   the photo is allowed to run past the fold — it reads as editorial. */
+
+@media (min-width: 62em) {
+  .hero__inner {
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: clamp(3rem, 5vw, 5.5rem);
+  }
+  /* Bleed the hero photo to the right edge — editorial, not boxed */
+  .hero__figure {
+    margin-right: calc((var(--vw) - min(var(--vw), var(--shell))) / -2 - var(--gutter));
+  }
+}
+
+/* ==========================================================================
+   2 · Transformation proof
+   ========================================================================== */
+.section--proof {
+  background: var(--ivory);
+  border-top: 1px solid var(--rule-soft);
+}
+
+@media (min-width: 62em) {
+  .section-head--split {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+  .section-head__aside { padding-bottom: 0.6rem; }
+}
+
+/* --- Lead transformation: each side keeps its own proportions, uncropped --- */
+.pair--lead { margin-bottom: clamp(3.5rem, 8vw, 5.5rem); }
+.pair__imgs--natural { align-items: start; gap: clamp(0.5rem, 1.5vw, 1rem); }
+.pair__imgs--natural .fig { aspect-ratio: auto; }
+.pair__imgs--natural .fig img { height: auto; }
+
+/* Side by side, the landscape "before" collapses to about 90px tall on a phone.
+   Stack the lead pair instead so both photos get the full column width.
+   Doubled class: plain .pair__imgs is defined later at equal specificity. */
+@media (max-width: 39.99em) {
+  .pair__imgs.pair__imgs--natural { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+.pair__caption--lead {
+  font-size: 1.0625rem;
+  max-width: 60ch;
+  padding-top: 1.375rem;
+}
+.pair__caption--lead strong { font-weight: 500; color: var(--ink); }
+
+/* --- Before/after drag slider --- */
+.ba { --ba-pos: 50%; margin-bottom: clamp(3.5rem, 8vw, 6rem); }
+
+.ba__frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--parchment);
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.ba__layer { position: absolute; inset: 0; }
+.ba__layer img { width: 100%; height: 100%; object-fit: cover; }
+.ba__layer--before { clip-path: inset(0 calc(100% - var(--ba-pos)) 0 0); }
+
+.ba__tag {
+  position: absolute;
+  top: 1.25rem;
+  z-index: 3;
+  padding: 0.55rem 1rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  background: var(--ivory);
+  color: var(--ink);
+  pointer-events: none;
+}
+.ba__tag--before { left: 1.25rem; }
+.ba__tag--after  { right: 1.25rem; background: var(--deep-olive); color: var(--ivory); }
+
+.ba__handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: var(--ba-pos);
+  width: 1px;
+  background: var(--ivory);
+  z-index: 4;
+  pointer-events: none;
+}
+.ba__grip {
+  position: absolute;
+  top: 50%; left: 50%;
+  translate: -50% -50%;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--ivory);
+  display: grid;
+  place-items: center;
+}
+.ba__grip::before {
+  content: "\2039\00a0\203a";
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  color: var(--deep-olive);
+}
+
+.ba__range {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+.ba__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 54px; height: 100vh;
+  cursor: ew-resize;
+}
+.ba__range::-moz-range-thumb {
+  width: 54px; height: 100vh;
+  border: 0; cursor: ew-resize;
+}
+.ba__frame:has(.ba__range:focus-visible) .ba__grip {
+  outline: 2px solid var(--olive);
+  outline-offset: 3px;
+}
+
+.ba__caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.ba__caption strong { font-weight: 500; color: var(--ink); }
+.ba__hint {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-left: auto;
+}
+
+/* The detail pair is a tall 3:4 frame. Full width it would swamp the section, so
+   on desktop it sits left with the caption offset beside it. */
+@media (min-width: 62em) {
+  .ba {
+    display: grid;
+    grid-template-columns: minmax(0, 27rem) 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: end;
+  }
+  .ba__caption {
+    display: block;
+    margin-top: 0;
+    max-width: 32ch;
+    padding-bottom: 0.5rem;
+    font-size: 1.0625rem;
+  }
+  .ba__hint { display: block; margin: 1.5rem 0 0; }
+}
+
+/* --- Supporting pairs --- */
+.pairs {
+  display: grid;
+  gap: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
+  /* pairs use different frame ratios so no photo gets cropped badly —
+     top-align them rather than stretching to a shared height */
+  align-items: start;
+}
+.pair__imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pair__imgs .fig { position: relative; }
+.pair:hover .fig img { transform: scale(1.03); }
+
+.pair__tag {
+  position: absolute;
+  left: 0; top: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  background: var(--ivory);
+  color: var(--ink);
+}
+.pair__tag--after { background: var(--deep-olive); color: var(--ivory); }
+
+.pair__caption {
+  margin-top: 1.125rem;
+  padding-top: 1.125rem;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 48em) {
+  .pairs { grid-template-columns: 1fr 1fr; }
+  /* Offset alternating pairs so the grid never reads as a card row */
+  .pairs .pair:nth-child(even) { margin-top: clamp(2rem, 5vw, 4.5rem); }
+}
+
+/* ==========================================================================
+   3 · What we do
+   ========================================================================== */
+.section--services {
+  background: var(--parchment);
+}
+
+.services__inner { display: grid; gap: clamp(2.75rem, 6vw, 5rem); }
+
+.services__lede {
+  margin-top: 1.75rem;
+  color: var(--ink-soft);
+  max-width: 40ch;
+}
+.services__figure { margin-top: clamp(2rem, 4vw, 3rem); background: #ded2bd; }
+
+.services__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem 1.75rem;
+  padding-block: clamp(1.5rem, 3vw, 2.125rem);
+  border-top: 1px solid var(--rule);
+}
+.services__item:last-child { border-bottom: 1px solid var(--rule); }
+
+.services__num {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--walnut);
+  padding-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+.services__body h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+  margin-bottom: 0.5rem;
+}
+.services__body p {
+  color: var(--ink-soft);
+  max-width: 52ch;
+  font-size: 1rem;
+}
+
+@media (min-width: 62em) {
+  .services__inner {
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .services__side { position: sticky; top: 7rem; }
+  .services__figure { display: block; }
+}
+@media (max-width: 61.99em) {
+  .services__figure { display: none; }
+}
+
+/* ==========================================================================
+   4 · Featured work
+   ========================================================================== */
+.section--craft {
+  background: var(--ivory);
+}
+
+.craft__inner { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
+
+.craft__prose { margin-block: 2rem 2.5rem; }
+.craft__prose p { color: var(--ink-soft); max-width: 46ch; }
+.craft__prose p + p { margin-top: 1.25rem; }
+
+@media (min-width: 62em) {
+  .craft__inner {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(3.5rem, 7vw, 6.5rem);
+  }
+  /* Bleed the project photo off the left edge */
+  .craft__figure {
+    margin-left: calc((var(--vw) - min(var(--vw), var(--shell))) / -2 - var(--gutter));
+  }
+  .craft__copy { padding-right: clamp(0rem, 3vw, 3rem); }
+}
+
+/* ==========================================================================
+   5 · The plan  (the single dark section)
+   ========================================================================== */
+.section--plan {
+  background: var(--deep-olive);
+  color: var(--ivory);
+}
+
+.plan__head { max-width: 56ch; margin-bottom: clamp(3rem, 7vw, 5rem); }
+.plan__lede {
+  margin-top: 1.75rem;
+  color: rgba(242, 235, 221, 0.72);
+  max-width: 48ch;
+  font-size: 1.0625rem;
+}
+
+.plan { display: grid; gap: 0; }
+
+.plan__step {
+  padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
+  border-top: 1px solid var(--rule-light);
+}
+.plan__num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--brass-light);
+  margin-bottom: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+.plan__step h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  color: var(--ivory);
+  margin-bottom: 0.75rem;
+}
+.plan__step p {
+  color: rgba(242, 235, 221, 0.72);
+  max-width: 34ch;
+  font-size: 0.9875rem;
+}
+
+.plan__stakes {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--rule-light);
+  font-family: var(--serif);
+  font-size: clamp(1.375rem, 1.1rem + 1.15vw, 2rem);
+  line-height: 1.32;
+  color: var(--ivory);
+  max-width: 34ch;
+}
+.plan__stakes .link-arrow {
+  display: block;
+  margin-top: 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 48em) {
+  .plan { grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
+  .plan__stakes { max-width: 46ch; }
+}
+
+/* ==========================================================================
+   6 · Quote form
+   ========================================================================== */
+.section--quote { background: var(--ivory); }
+
+.quote__inner { display: grid; gap: clamp(3rem, 6vw, 5rem); align-items: start; }
+
+.quote__lede {
+  margin-top: 1.75rem;
+  color: var(--ink-soft);
+  max-width: 44ch;
+}
+
+/* FAQ — editorial list, not an accordion */
+.faq { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.faq__item { padding-block: 1.375rem; border-top: 1px solid var(--rule-soft); }
+.faq__item:last-child { border-bottom: 1px solid var(--rule-soft); }
+.faq dt {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+.faq dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 50ch;
+}
+
+/* --- Form --- */
+.quote__formwrap {
+  background: var(--parchment);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+}
+
+.qform__row { display: grid; gap: 1.25rem; }
+@media (min-width: 30em) { .qform__row { grid-template-columns: 1fr 1fr; } }
+
+.field { margin-bottom: 1.25rem; }
+.field label,
+.uploads legend {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+.req { color: var(--walnut); }
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--ivory);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  transition: border-color 0.25s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 8rem; line-height: 1.6; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--ink-faint); }
+.field input:focus,
+.field textarea:focus { border-color: var(--olive); outline-offset: 1px; }
+
+.field.has-error input,
+.field.has-error textarea { border-color: #8C3B2A; }
+.field__err {
+  font-size: 0.8125rem;
+  color: #8C3B2A;
+  margin-top: 0.4rem;
+  display: none;
+}
+.field.has-error .field__err { display: block; }
+
+/* Honeypot — off-screen, never display:none */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+
+/* --- Upload slots --- */
+.uploads { border: 0; padding: 0; margin: 0.5rem 0 1.75rem; }
+.uploads__help {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  max-width: 44ch;
+}
+.uploads__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+
+.slot { position: relative; }
+.slot__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+.slot__label {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  aspect-ratio: 1;
+  border: 1px dashed rgba(41, 37, 31, 0.28);
+  border-radius: var(--radius);
+  background: var(--ivory);
+  cursor: pointer;
+  margin: 0 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--ink-soft) !important;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.slot__label:hover { border-color: var(--olive); background: #F7F2E7; }
+.slot__input:focus-visible + .slot__label { outline: 2px solid var(--olive); outline-offset: 2px; }
+.slot__icon { font-size: 1.5rem; line-height: 1; color: var(--walnut); }
+.slot__text { font-size: 0.625rem; }
+
+.slot__preview { position: relative; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; }
+.slot__preview img { width: 100%; height: 100%; object-fit: cover; }
+.slot__remove {
+  position: absolute;
+  top: 0; right: 0;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background: var(--deep-olive);
+  color: var(--ivory);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.slot__remove:hover { background: var(--walnut); }
+.slot__meta {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 0.35rem 0.5rem;
+  background: rgba(48, 59, 43, 0.86);
+  color: var(--ivory);
+  font-size: 0.5625rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.slot.is-filled .slot__label { display: none !important; }
+
+.qform__status {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  min-height: 1.4em;
+}
+.qform__status.is-error { color: #8C3B2A; }
+.qform__status.is-busy { color: var(--ink-soft); }
+
+.qform__fine {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.qform__fine a { color: var(--olive); }
+
+@media (min-width: 62em) {
+  .quote__inner { grid-template-columns: 1fr 1.02fr; gap: clamp(3.5rem, 7vw, 6rem); }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--dark-walnut);
+  color: rgba(242, 235, 221, 0.78);
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+  font-size: 0.9375rem;
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.brand__mark--footer { width: 52px; height: 52px; color: var(--brass); }
+.site-footer__slogan {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--ivory);
+  margin-top: 1.25rem;
+  max-width: 12ch;
+  line-height: 1.15;
+}
+
+.site-footer__h {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  margin-bottom: 1.125rem;
+}
+.site-footer__col p + p { margin-top: 0.5rem; }
+.site-footer__col a { text-decoration: none; }
+.site-footer__col a:hover { color: var(--ivory); }
+/* .link-arrow defaults to dark ink, which is invisible on the dark walnut
+   footer — scope it here so it can't be missed on a new footer link */
+.site-footer .link-arrow { color: var(--ivory); }
+.site-footer__areas { line-height: 1.8; max-width: 34ch; }
+
+.site-footer__base {
+  border-top: 1px solid var(--rule-light);
+  padding-block: 1.75rem;
+  font-size: 0.75rem;
+  color: rgba(242, 235, 221, 0.62);
+}
+
+@media (min-width: 48em) {
+  .site-footer__inner { grid-template-columns: 1.1fr 1fr 1fr; }
+}
+
+/* ==========================================================================
+   Mobile action bar
+   ========================================================================== */
+.mobile-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border-top: 1px solid var(--rule);
+}
+.mobile-bar a {
+  padding: 1rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+}
+.mobile-bar__call { background: var(--ivory); color: var(--ink); }
+.mobile-bar__cta { background: var(--deep-olive); color: var(--ivory); }
+
+@media (min-width: 62em) { .mobile-bar { display: none; } }
+@media (max-width: 61.99em) {
+  body { padding-bottom: 3.5rem; }
+  html { scroll-padding-top: 6rem; }
+}
+
+/* ==========================================================================
+   Motion
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* No-JS: never hide content behind an un-fired reveal */
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+@media print {
+  .site-header, .mobile-bar, .ba__range, .ba__handle { display: none; }
+  body { background: #fff; color: #000; }
+}
