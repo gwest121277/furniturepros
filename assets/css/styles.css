@@ -720,7 +720,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* FAQ: editorial list, not an accordion */
-.faq { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.faq { margin-top: 0; }
 .faq__item { padding-block: 1.375rem; border-top: 1px solid var(--rule-soft); }
 .faq__item:last-child { border-bottom: 1px solid var(--rule-soft); }
 .faq dt {
@@ -883,7 +883,18 @@ button { font: inherit; color: inherit; }
 .qform__fine a { color: var(--olive); }
 
 @media (min-width: 62em) {
-  .quote__inner { grid-template-columns: 1fr 1.02fr; gap: clamp(3.5rem, 7vw, 6rem); }
+  /* Put the FAQ back alongside the form: intro and FAQ stack in column one,
+     the form spans both rows in column two. */
+  .quote__inner {
+    grid-template-columns: 1fr 1.02fr;
+    grid-template-areas:
+      "intro form"
+      "faq   form";
+    gap: clamp(2rem, 4vw, 3rem) clamp(3.5rem, 7vw, 6rem);
+  }
+  .quote__intro    { grid-area: intro; }
+  .quote__faq      { grid-area: faq; }
+  .quote__formwrap { grid-area: form; }
 }
 
 /* ==========================================================================
