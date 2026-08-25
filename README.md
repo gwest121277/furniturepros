@@ -20,6 +20,7 @@ thank-you.html        Post-submission confirmation
 assets/css/styles.css All styling
 assets/js/main.js     Photo compression, form, before/after slider, reveals
 assets/images/        Your photos, see assets/images/README.md for names
+assets/images/favicon/ Site icons, generated from the FP monogram
 netlify.toml          Publish settings + security headers
 robots.txt            Crawl rules
 sitemap.xml           Search engine index hints
@@ -77,7 +78,8 @@ people will tap it.
 Netlify Forms has two limits that shaped this:
 
 - **One file per field.** The `multiple` attribute is not supported, so there
-  are three separate inputs: `photo-1`, `photo-2`, `photo-3`.
+  are three separate inputs, named `photo-front`, `photo-side` and `photo-top`
+  so the submission reads clearly in your inbox rather than "photo-1".
 - **8 MB maximum per submission**, with a 30-second upload timeout.
 
 Phone photos routinely run 4–8 MB each, so three raw photos would be rejected
@@ -99,6 +101,25 @@ though large photos may then hit the 8 MB ceiling.
 A honeypot field named `bot-field` is positioned off-screen (never
 `display: none`, which some bots detect and skip). Netlify rejects any
 submission that arrives with it filled in.
+
+---
+
+## Favicon
+
+`assets/images/favicon/` holds the browser and home-screen icons: an SVG for
+modern browsers, a multi-resolution `.ico` (48, 32, 16), and a 180px
+`apple-touch-icon.png` for iOS. A copy of the `.ico` also sits at the repo root,
+because browsers request `/favicon.ico` whether you link it or not.
+
+They are drawn from the FP monogram, with two deliberate departures from the
+on-page logo. They use Georgia Bold instead of DM Serif Display, because a
+high-contrast display serif loses its thin strokes completely at 16px, and the
+ring is drawn heavier (heavier still on the 16px frame) so it survives being
+scaled down.
+
+Run `python tools-make-favicon.py` to regenerate them after a logo change. The
+geometry follows the inline `<symbol id="fp-mark">` in `index.html`, and the
+monogram is measured and re-centred automatically rather than positioned by eye.
 
 ---
 
