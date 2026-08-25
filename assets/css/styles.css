@@ -505,28 +505,29 @@ button { font: inherit; color: inherit; }
 }
 
 /* --- Transformation rows -------------------------------------------------
-   Each pair is a full-width band: before and after side by side at a shared
-   ratio, caption offset to the right. Rows differ in height because the
-   photographs do, but every row starts and ends on the same edges, so the
-   section reads as a sequence rather than a scatter.
-   -------------------------------------------------------------------------- */
-.tx { margin-bottom: clamp(3.5rem, 8vw, 6rem); }
+   Each pair is a plate: before and after side by side, caption underneath.
 
-.tx__row {
-  display: grid;
-  gap: 1.5rem;
-  padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
-  border-top: 1px solid var(--rule);
-}
-.tx__row:last-child { border-bottom: 1px solid var(--rule); }
+   The caption sits below rather than beside deliberately. The source photos
+   run from 1.78 to 0.56, so a side caption ends up in a column as tall as the
+   images with only ~115px of text in it, stranding up to 429px of empty space
+   next to the tall pairs. Underneath, the plate is self-contained and the
+   differing heights stop mattering.
+
+   Every plate shares one width, so the left and right edges line up all the
+   way down even though the photographs are different shapes.
+   -------------------------------------------------------------------------- */
+.tx { margin-bottom: clamp(4rem, 9vw, 7rem); }
+
+.tx__plate { max-width: min(100%, 56rem); }
+.tx__plate + .tx__plate { margin-top: clamp(4.5rem, 8vw, 7rem); }
 
 .tx__imgs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
 }
 .tx__imgs .fig { position: relative; }
-.tx__row:hover .fig img { transform: scale(1.03); }
+.tx__plate:hover .fig img { transform: scale(1.03); }
 
 .tx__tag {
   position: absolute;
@@ -541,31 +542,35 @@ button { font: inherit; color: inherit; }
 }
 .tx__tag--after { background: var(--deep-olive); color: var(--ivory); }
 
+/* Hairline ties the words to the pictures above them */
+.tx__cap {
+  margin-top: clamp(1.375rem, 2.2vw, 1.625rem);
+  padding-top: clamp(1.25rem, 2.2vw, 1.625rem);
+  border-top: 1px solid var(--rule-soft);
+}
 .tx__cap h3 {
   font-family: var(--serif);
   font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
 }
 .tx__cap p {
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--ink-soft);
-  max-width: 40ch;
+  max-width: 62ch;
 }
 
-/* Side by side, the landscape pair drops to about 109px tall on a phone, which
-   is too small to read wear on a finish. Give that row full width instead. */
-@media (max-width: 47.99em) {
-  .tx__row--wide .tx__imgs { grid-template-columns: 1fr; }
+/* On a phone, two photos side by side come out about 170px wide, too small to
+   read a finish on. Below 576px each pair stacks so both photos get the full
+   column; the Before and After tags carry the comparison instead of adjacency. */
+@media (max-width: 35.99em) {
+  .tx__imgs { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 
-@media (min-width: 62em) {
-  .tx__row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
-    align-items: start;
-  }
-  .tx__cap { padding-top: 0.375rem; }
+/* The landscape pair stays stacked further up the range, since a 3:2 frame
+   loses height fastest as the column narrows. */
+@media (min-width: 36em) and (max-width: 47.99em) {
+  .tx__plate--wide .tx__imgs { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================
