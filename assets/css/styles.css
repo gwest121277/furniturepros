@@ -519,12 +519,12 @@ button { font: inherit; color: inherit; }
 .tx { margin-bottom: clamp(4rem, 9vw, 7rem); }
 
 .tx__plate { max-width: min(100%, 56rem); }
-.tx__plate + .tx__plate { margin-top: clamp(4.5rem, 8vw, 7rem); }
+.tx__plate + .tx__plate { margin-top: clamp(5.5rem, 8vw, 7rem); }
 
 .tx__imgs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(0.75rem, 1.4vw, 1.25rem);
+  gap: 1.25rem;
 }
 .tx__imgs .fig { position: relative; }
 .tx__plate:hover .fig img { transform: scale(1.03); }
@@ -544,8 +544,8 @@ button { font: inherit; color: inherit; }
 
 /* Hairline ties the words to the pictures above them */
 .tx__cap {
-  margin-top: clamp(1.375rem, 2.2vw, 1.625rem);
-  padding-top: clamp(1.25rem, 2.2vw, 1.625rem);
+  margin-top: 1.625rem;
+  padding-top: 1.625rem;
   border-top: 1px solid var(--rule-soft);
 }
 .tx__cap h3 {
@@ -563,8 +563,17 @@ button { font: inherit; color: inherit; }
 /* On a phone, two photos side by side come out about 170px wide, too small to
    read a finish on. Below 576px each pair stacks so both photos get the full
    column; the Before and After tags carry the comparison instead of adjacency. */
+/* Phones. Full-width photographs carry more visual weight than the same
+   pictures do on a desktop grid, so they need more room around them, not less.
+   Desktop values are deliberately untouched. */
+@media (max-width: 47.99em) {
+  .tx__plate + .tx__plate { margin-top: 6rem; }
+  .tx__cap { margin-top: 2rem; padding-top: 1.75rem; }
+  .tx__cap h3 { margin-bottom: 0.75rem; }
+}
+
 @media (max-width: 35.99em) {
-  .tx__imgs { grid-template-columns: 1fr; gap: 0.75rem; }
+  .tx__imgs { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
 /* The landscape pair stays stacked further up the range, since a 3:2 frame
