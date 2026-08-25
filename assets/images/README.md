@@ -2,7 +2,7 @@
 
 ## What's currently on the page
 
-Four real projects are wired in. Nothing here is a placeholder.
+Five projects are wired in. Nothing here is a placeholder.
 
 | Photo | Where it appears |
 |---|---|
@@ -15,6 +15,8 @@ Four real projects are wired in. Nothing here is a placeholder.
 | `EA-nightstand-after.webp` | Featured project (section 4) |
 | `desk-leg-before/after.webp` | Drag-to-compare detail slider |
 | `desk-leg-after.webp` | Craftsmanship detail (section 3) |
+| `combo-before/after.webp` | Before/after grid |
+| `og/social-share.webp` | Social share card (link previews) |
 
 ### About the hero banners
 
@@ -47,26 +49,34 @@ piece of furniture gets cut off. If you swap a file, keep roughly the same shape
 
 ---
 
-## Not used: `combo-before.webp` / `combo-after.webp`
+## The combo pair
 
-**These are left out of the page on purpose.**
+Added to the transformation grid at your direction, labelled Before and After
+like the others.
 
-`combo-before.webp` is a genuine photo of two real pieces, the taped-up
-waterfall tallboy and nightstand. But `combo-after.webp` is a styled interior
-rendering, not a photograph of those pieces finished. The furniture in it
-doesn't match the furniture in the before shot: different proportions, different
-legs, different hardware.
+Worth knowing: the "after" reads as a styled interior rendering rather than a
+photograph of those two pieces finished, and the furniture in it doesn't match
+the before shot (different proportions, legs and hardware). If you'd rather it
+carried a "Proposed design" label instead of "After", that's a one-line change to
+the `pair__tag--after` span in `index.html`. Swapping in a real photo of the
+finished pieces later needs nothing but a file with the same name.
 
-Publishing it under an "After" label would show prospective customers a result
-that wasn't produced in the shop. Everything else on this page is real work, and
-that's the page's entire persuasive power, so this pair stays out until there's
-a real photo of the finished pieces.
+---
 
-If the render is a **design concept** you showed a client, it can absolutely go
-on the page, but labelled as a proposed design, not as completed work. Say the
-word and it'll be added that way.
+## Social share card
 
-The files are still here; nothing has been deleted.
+`og/social-share.webp` is 1731 x 909, a 1.904 ratio, which is effectively the
+1.91:1 that Facebook, LinkedIn and X want. It's wired to `og:image` and
+`twitter:image` with matching width, height, type and alt tags.
+
+One caveat: it's a WebP. Facebook and X handle WebP fine; some smaller link
+scrapers and older LinkedIn paths still prefer JPEG or PNG. If a preview ever
+comes up blank somewhere, export the same artwork as `og/social-share.jpg` and
+change the two meta tags to point at it.
+
+The `LocalBusiness` schema deliberately points its `image` at
+`pine-dresser-after.webp` instead, because Google's rich results want a photo of
+actual work rather than a text banner.
 
 ---
 

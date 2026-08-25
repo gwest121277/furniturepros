@@ -109,7 +109,7 @@ comments (`1 · HERO`, `2 · TRANSFORMATION PROOF`, and so on).
 
 **Photos.** See [`assets/images/README.md`](assets/images/README.md) for what's
 wired where, and for the naming convention when you add a new before/after pair.
-Four real projects are on the page; no placeholders remain.
+Five projects are on the page; no placeholders remain.
 
 **Phone and email.** `916-893-7467` and `FurniturePros.lincoln@gmail.com`
 appear in the header, footer, form, thank-you page, and the `LocalBusiness`
