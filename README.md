@@ -192,7 +192,6 @@ so search targeting and art direction don't fight each other.
 ## Accessibility
 
 - All 105 text elements verified against **WCAG 2.1 AA** contrast
-- Before/after slider is a styled `input[type=range]`, drag *and* arrow keys
 - Every form field labelled, with inline errors and an `aria-live` status region
 - Skip link, visible focus rings, `prefers-reduced-motion` honored
 

@@ -380,130 +380,6 @@ button { font: inherit; color: inherit; }
   .section-head__aside { padding-bottom: 0.6rem; }
 }
 
-/* --- Before/after drag slider --- */
-.ba { --ba-pos: 50%; margin-bottom: clamp(3.5rem, 8vw, 6rem); }
-
-.ba__frame {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  background: var(--parchment);
-  cursor: ew-resize;
-  user-select: none;
-}
-
-.ba__layer { position: absolute; inset: 0; }
-.ba__layer img { width: 100%; height: 100%; object-fit: cover; }
-.ba__layer--before { clip-path: inset(0 calc(100% - var(--ba-pos)) 0 0); }
-
-.ba__tag {
-  position: absolute;
-  top: 1.25rem;
-  z-index: 3;
-  padding: 0.55rem 1rem;
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.19em;
-  text-transform: uppercase;
-  background: var(--ivory);
-  color: var(--ink);
-  pointer-events: none;
-}
-.ba__tag--before { left: 1.25rem; }
-.ba__tag--after  { right: 1.25rem; background: var(--deep-olive); color: var(--ivory); }
-
-.ba__handle {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: var(--ba-pos);
-  width: 1px;
-  background: var(--ivory);
-  z-index: 4;
-  pointer-events: none;
-}
-.ba__grip {
-  position: absolute;
-  top: 50%; left: 50%;
-  translate: -50% -50%;
-  width: 54px; height: 54px;
-  border-radius: 50%;
-  background: var(--ivory);
-  display: grid;
-  place-items: center;
-}
-.ba__grip::before {
-  content: "\2039\00a0\203a";
-  font-family: var(--sans);
-  font-size: 1.125rem;
-  letter-spacing: 0.1em;
-  color: var(--deep-olive);
-}
-
-.ba__range {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  opacity: 0;
-  cursor: ew-resize;
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-}
-.ba__range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 54px; height: 100vh;
-  cursor: ew-resize;
-}
-.ba__range::-moz-range-thumb {
-  width: 54px; height: 100vh;
-  border: 0; cursor: ew-resize;
-}
-.ba__frame:has(.ba__range:focus-visible) .ba__grip {
-  outline: 2px solid var(--olive);
-  outline-offset: 3px;
-}
-
-.ba__caption {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  align-items: baseline;
-  margin-top: 1.5rem;
-  font-size: 0.9375rem;
-  color: var(--ink-soft);
-}
-.ba__caption strong { font-weight: 500; color: var(--ink); }
-.ba__hint {
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.19em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-left: auto;
-}
-
-/* The detail pair is a tall 3:4 frame. Full width it would swamp the section, so
-   on desktop it sits left with the caption offset beside it. */
-@media (min-width: 62em) {
-  .ba {
-    display: grid;
-    grid-template-columns: minmax(0, 27rem) 1fr;
-    gap: clamp(2.5rem, 5vw, 5rem);
-    align-items: end;
-  }
-  .ba__caption {
-    display: block;
-    margin-top: 0;
-    max-width: 32ch;
-    padding-bottom: 0.5rem;
-    font-size: 1.0625rem;
-  }
-  .ba__hint { display: block; margin: 1.5rem 0 0; }
-}
-
 /* --- Transformation rows -------------------------------------------------
    Each pair is a plate: before and after side by side, caption underneath.
 
@@ -1021,6 +897,6 @@ button { font: inherit; color: inherit; }
    Print
    ========================================================================== */
 @media print {
-  .site-header, .mobile-bar, .ba__range, .ba__handle { display: none; }
+  .site-header, .mobile-bar { display: none; }
   body { background: #fff; color: #000; }
 }

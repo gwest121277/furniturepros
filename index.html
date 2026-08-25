@@ -218,7 +218,7 @@
         </div>
         <p class="section-head__aside">
           Every piece below arrived needing work: scratched, water stained, painted over,
-          or loose at the joints. Drag the handle and see what the wood was hiding.
+          or loose at the joints. The after shots show what the wood was hiding.
         </p>
       </div>
 
@@ -313,39 +313,30 @@
 
       </div>
 
-      <!-- Detail comparison. Both frames were shot from the same spot, which is what makes
-           the drag work: the foot transforms in place rather than jumping. -->
-      <div class="ba reveal" data-ba>
-        <div class="ba__frame">
-          <div class="ba__layer ba__layer--after fig">
-            <img src="assets/images/transformations/desk-leg-after.webp"
-                 alt="Ball and claw foot after refinishing, carving sharp and finish restored"
-                 width="2252" height="4000" loading="lazy" decoding="async">
-          </div>
-          <div class="ba__layer ba__layer--before fig" data-ba-before>
+      <figure class="tx__plate reveal">
+        <div class="tx__imgs">
+          <div class="fig fig--2x3">
             <img src="assets/images/transformations/desk-leg-before.webp"
-                 alt="The same ball and claw foot before restoration, worn through to bare wood"
+                 alt="Carved ball and claw foot before restoration, worn through to bare wood"
                  width="2252" height="4000" loading="lazy" decoding="async">
+            <span class="tx__tag">Before</span>
           </div>
-
-          <span class="ba__tag ba__tag--before">Before</span>
-          <span class="ba__tag ba__tag--after">After</span>
-
-          <div class="ba__handle" data-ba-handle aria-hidden="true">
-            <span class="ba__grip"></span>
+          <div class="fig fig--2x3">
+            <img src="assets/images/transformations/desk-leg-after.webp"
+                 alt="The same carved foot after refinishing, carving sharp and finish restored"
+                 width="2252" height="4000" loading="lazy" decoding="async">
+            <span class="tx__tag tx__tag--after">After</span>
           </div>
-
-          <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50"
-                 step="0.1" data-ba-input
-                 aria-label="Drag to compare the carved foot before and after restoration">
         </div>
-
-        <p class="ba__caption">
-          <strong>The difference is in the details.</strong> A carved foot worn back to bare
-          wood, rebuilt and refinished to match the rest of the case.
-          <span class="ba__hint">Drag to compare</span>
-        </p>
-      </div>
+        <!-- This looks like a foot from the secretary desk above: same ball and claw,
+             same blue moving blanket. If it is, say so in the caption, it is a
+             stronger story told as a detail of a piece the visitor just saw. -->
+        <figcaption class="tx__cap">
+          <h3>Carved foot, in detail</h3>
+          <p>The difference is in the details. Worn back to bare wood at the toes,
+          rebuilt and refinished to match the rest of the case.</p>
+        </figcaption>
+      </figure>
 
     </div>
   </section>

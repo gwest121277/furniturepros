@@ -4,8 +4,7 @@
    1. Image fallback:      tonal placeholder when a photo isn't in place yet
    2. Sticky header:       hairline rule appears once the page scrolls
    3. Reveals:             restrained fade/rise on section entry
-   4. Before/after:        drag + keyboard comparison slider
-   5. Quote form:          validation, previews, in-browser photo compression,
+   4. Quote form:          validation, previews, in-browser photo compression,
                            AJAX submit to Netlify Forms
 
    Why compression: Netlify caps a form submission at 8MB total and does not
@@ -44,7 +43,7 @@
   }
 
   function initImageFallback() {
-    $$('.fig img, .ba__layer img').forEach(function (img) {
+    $$('.fig img').forEach(function (img) {
       // Already failed before this script ran
       if (img.complete && img.naturalWidth === 0) { markEmpty(img); return; }
       img.addEventListener('error', function () { markEmpty(img); });
@@ -125,23 +124,7 @@
   }
 
   /* ======================================================================
-     4 · Before / after slider
-     ====================================================================== */
-  function initBeforeAfter() {
-    $$('[data-ba]').forEach(function (root) {
-      var input = $('[data-ba-input]', root);
-      if (!input) return;
-
-      function apply() {
-        root.style.setProperty('--ba-pos', input.value + '%');
-      }
-      input.addEventListener('input', apply);
-      apply();
-    });
-  }
-
-  /* ======================================================================
-     5 · Quote form
+     4 · Quote form
      ====================================================================== */
 
   /**
@@ -412,7 +395,6 @@
     initImageFallback();
     initHeader();
     initReveals();
-    initBeforeAfter();
     initForm();
     initYear();
   }

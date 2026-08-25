@@ -13,7 +13,7 @@ Five projects are wired in. Nothing here is a placeholder.
 | `100-year-old-desk-before/after.webp` | Before/after grid |
 | `EA-nightstand-before/after.webp` | Before/after grid |
 | `EA-nightstand-after.webp` | Featured project (section 4) |
-| `desk-leg-before/after.webp` | Drag-to-compare detail slider |
+| `desk-leg-before/after.webp` | Before/after grid, carved foot detail |
 | `desk-leg-after.webp` | Craftsmanship detail (section 3) |
 | `combo-before/after.webp` | Before/after grid |
 | `og/social-share.webp` | Social share card (link previews) |
@@ -56,6 +56,7 @@ single shared ratio would badly crop something:
 | secretary desk | 1:1 | 0.97 and 0.93, already near square |
 | nightstand | 2:3 | 0.80 and 0.56, only a tall frame keeps the feet |
 | bedroom set | 1:1 | 1.14 and 1.03, near square |
+| carved foot | 2:3 | 0.56 both, the one pair shot from a fixed position |
 
 Rows differ in height because the photographs do, but every row starts and ends
 on the same edges. If you add a pair, give both its photos the same
@@ -131,9 +132,16 @@ text.
 
 **The one rule that matters most:** within a pair, match the angle, the
 distance, and the lighting as closely as you can. The `desk-leg` pair is the
-example to follow, both frames were shot from the same spot, which is exactly
-why the drag slider works on it. The other pairs are shot too differently to
-slide, so they're shown side by side instead.
+example to follow, both frames are 2252 x 4000 from the same spot, so the foot
+sits in exactly the same place in both.
+
+That matters beyond looking tidy. A drag-to-compare slider, where you pull a
+handle across one frame to wipe between before and after, only works when the
+two photos line up that precisely. There was one on the page and it has been
+taken out, because only that single pair qualified and it left the other four
+looking inconsistent. If you ever shoot a set from a tripod without moving it
+between the before and the after, say so and the slider can come back for those
+pairs. It is in the git history.
 
 Don't clean the piece up before the "before" shot. Genuine damage is the proof.
 
