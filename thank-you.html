@@ -15,39 +15,85 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="assets/css/styles.css">
 
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+
 <style>
-  .ty { display: grid; place-items: center; min-height: 78vh; padding-block: var(--section-y); }
-  .ty__inner { max-width: 44rem; }
+  /* Confirmation page. Same language as the landing page: asymmetric split,
+     serif headline, hairline rules, one photograph bleeding off the edge. */
+  .ty { padding-block: clamp(2.5rem, 6vw, 5rem) 0; }
+
+  .ty__grid { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
+
   .ty__title {
     font-family: var(--serif);
-    font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+    font-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
   }
   .ty__lede {
-    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
     line-height: 1.6;
     color: var(--ink-soft);
-    max-width: 46ch;
-    margin-bottom: 2.5rem;
+    max-width: 44ch;
   }
-  .ty__next {
-    margin-top: clamp(2.5rem, 5vw, 3.5rem);
-    padding-top: clamp(2rem, 4vw, 2.5rem);
+
+  /* What happens next: the service-index pattern from the landing page */
+  .ty__steps { margin: clamp(2.25rem, 4vw, 3rem) 0; max-width: 46ch; }
+  .ty__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.125rem;
     border-top: 1px solid var(--rule-soft);
   }
-  .ty__next h2 {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: var(--olive);
-    margin-bottom: 1.25rem;
+  .ty__step:last-child { border-bottom: 1px solid var(--rule-soft); }
+  .ty__step b {
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: var(--ink);
+    grid-column: 2;
   }
-  .ty__next p { color: var(--ink-soft); max-width: 48ch; }
-  .ty__next p + p { margin-top: 0.75rem; }
-  .ty__next a { color: var(--olive); }
+  .ty__step span {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    grid-column: 2;
+  }
+  .ty__dot {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    width: 7px; height: 7px;
+    margin-top: 0.6rem;
+    border-radius: 50%;
+    background: var(--brass);
+  }
+
+  .ty__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2.25rem; }
+
+  .ty__aside {
+    margin-top: clamp(2.25rem, 4vw, 3rem);
+    padding-top: clamp(1.75rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--ink-faint);
+    max-width: 46ch;
+  }
+  .ty__aside a { color: var(--olive); }
+  .ty__aside p + p { margin-top: 0.6rem; }
+
+  .ty__figure { position: relative; }
+
+  @media (min-width: 62em) {
+    .ty__grid { grid-template-columns: 1fr 0.9fr; gap: clamp(3rem, 5vw, 5.5rem); }
+    /* Bleed the photo to the right edge, matching the landing page.
+       --vw is scrollbar-aware and set by main.js. */
+    .ty__figure {
+      margin-right: calc((var(--vw) - min(var(--vw), var(--shell))) / -2 - var(--gutter));
+    }
+  }
 </style>
 </head>
 
@@ -72,34 +118,54 @@
     </a>
     <div class="site-header__actions">
       <a class="tel-link" href="tel:+19168937467">916&#8202;·&#8202;893&#8202;·&#8202;7467</a>
+      <a class="btn btn--solid btn--sm" href="/#transformations">View Transformations</a>
     </div>
   </div>
 </header>
 
 <main class="ty">
-  <div class="shell">
-    <div class="ty__inner">
+  <div class="shell ty__grid">
+
+    <div class="ty__copy reveal">
       <p class="eyebrow">Message Received</p>
 
-      <h1 class="ty__title">Thank you. We&rsquo;ve got your photos.</h1>
+      <h1 class="ty__title">Thank you.<br>We&rsquo;ve got<br>your photos.</h1>
 
       <p class="ty__lede">
-        Your piece is in front of us. We&rsquo;ll look at the wood, the damage, and the
-        finish you&rsquo;ve got now, then come back to you with what it needs and what
-        it costs.
+        Your piece is in front of us now. Here&rsquo;s what happens from here.
       </p>
 
-      <a class="btn btn--solid" href="/">Back to Furniture Pros</a>
+      <!-- Add a specific response time once you know what you can commit to,
+           e.g. "usually within one business day". A real promise converts;
+           a vague one does not. -->
+      <div class="ty__steps">
+        <div class="ty__step">
+          <span class="ty__dot" aria-hidden="true"></span>
+          <b>We look closely</b>
+          <span>At the wood, the finish it has now, and what the repair actually asks for.</span>
+        </div>
+        <div class="ty__step">
+          <span class="ty__dot" aria-hidden="true"></span>
+          <b>We come back with a real price</b>
+          <span>Laid out plainly, so you can see what the work involves and why.</span>
+        </div>
+        <div class="ty__step">
+          <span class="ty__dot" aria-hidden="true"></span>
+          <b>The decision is yours</b>
+          <span>Take whatever time you need. We&rsquo;re happy to answer questions either way.</span>
+        </div>
+      </div>
 
-      <div class="ty__next">
-        <h2>While you wait</h2>
-        <!-- Add a specific response time here once you know what you can commit to,
-             e.g. "We reply to every message within one business day." A real promise
-             converts; a vague one doesn't. -->
+      <div class="ty__cta">
+        <a class="btn btn--solid" href="/">Back to Furniture Pros</a>
+        <a class="link-arrow" href="/#transformations">See more transformations</a>
+      </div>
+
+      <div class="ty__aside">
         <p>
           If anything else about the piece comes to mind, whether that is another
-          photo, a color you have in mind, or a date you are working toward, just
-          reply to the confirmation or reach us directly.
+          photo, a color you have in mind, or a date you are working toward, send
+          it along and we&rsquo;ll add it to the file.
         </p>
         <p>
           Call or text <a href="tel:+19168937467">916&#8202;·&#8202;893&#8202;·&#8202;7467</a>,
@@ -107,6 +173,14 @@
         </p>
       </div>
     </div>
+
+    <figure class="ty__figure fig fig--1x1 reveal">
+      <img src="assets/images/transformations/pine-dresser-after.webp"
+           alt="Pine dresser refinished by Furniture Pros with a natural wood top and deep green body"
+           width="2992" height="2992" fetchpriority="high" decoding="async">
+      <figcaption class="fig__stamp">Yours could be next</figcaption>
+    </figure>
+
   </div>
 </main>
 
