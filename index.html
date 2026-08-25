@@ -222,95 +222,95 @@
         </p>
       </div>
 
-      <!-- Lead transformation: natural ratios on both sides, so neither photo is cropped -->
-      <figure class="pair pair--lead reveal">
-        <div class="pair__imgs pair__imgs--natural">
-          <div class="fig">
+      <!-- One pair per row. The source photos run from 1.78 to 0.56, so a single
+           shared frame would badly crop something; instead each pair picks the
+           ratio that suits its two photos, and the rows keep everything aligned
+           to the same edges. -->
+      <div class="tx">
+      <figure class="tx__row tx__row--wide reveal">
+        <div class="tx__imgs">
+          <div class="fig fig--3x2">
             <img src="assets/images/transformations/pine-dresser-before.webp"
                  alt="Dated pine dresser before restoration, with worn orange-brown finish and colonial brass hardware"
                  width="4000" height="2252" loading="lazy" decoding="async">
-            <span class="pair__tag">Before</span>
+            <span class="tx__tag">Before</span>
           </div>
-          <div class="fig">
+          <div class="fig fig--3x2">
             <img src="assets/images/transformations/pine-dresser-after.webp"
                  alt="The same pine dresser after refinishing, with a natural wood top, deep green body and new brass pulls"
                  width="2992" height="2992" loading="lazy" decoding="async">
-            <span class="pair__tag pair__tag--after">After</span>
+            <span class="tx__tag tx__tag--after">After</span>
           </div>
         </div>
-        <!-- CONFIRM the wood species and finish before this goes live -->
-        <figcaption class="pair__caption pair__caption--lead">
-          <strong>Pine dresser.</strong> The old finish came off entirely. The top was taken
-          back to bare wood and refinished to show the grain; the case was repaired, painted,
-          and fitted with new brass hardware.
+        <figcaption class="tx__cap">
+          <h3>Pine dresser</h3>
+          <p>The old finish came off entirely. The top was taken back to bare wood and refinished to show the grain; the case was repaired, painted, and fitted with new brass hardware.</p>
         </figcaption>
       </figure>
 
-      <!-- Supporting pairs -->
-      <div class="pairs">
-        <figure class="pair reveal">
-          <div class="pair__imgs">
-            <div class="fig fig--4x5">
-              <img src="assets/images/transformations/100-year-old-desk-before.webp"
-                   alt="Hundred-year-old slant front secretary desk before restoration, finish dulled and worn"
-                   width="1080" height="1112" loading="lazy" decoding="async">
-              <span class="pair__tag">Before</span>
-            </div>
-            <div class="fig fig--4x5">
-              <img src="assets/images/transformations/100-year-old-desk-after.webp"
-                   alt="The same antique secretary desk after refinishing, with restored brass hardware and ball and claw feet"
-                   width="2020" height="2172" loading="lazy" decoding="async">
-              <span class="pair__tag pair__tag--after">After</span>
-            </div>
+      <figure class="tx__row reveal">
+        <div class="tx__imgs">
+          <div class="fig fig--1x1">
+            <img src="assets/images/transformations/100-year-old-desk-before.webp"
+                 alt="Hundred-year-old slant front secretary desk before restoration, finish dulled and worn"
+                 width="1080" height="1112" loading="lazy" decoding="async">
+            <span class="tx__tag">Before</span>
           </div>
-          <figcaption class="pair__caption">
-            Hundred-year-old secretary desk. Serpentine drawer fronts refinished,
-            original brass cleaned and refitted.
-          </figcaption>
-        </figure>
+          <div class="fig fig--1x1">
+            <img src="assets/images/transformations/100-year-old-desk-after.webp"
+                 alt="The same antique secretary desk after refinishing, with restored brass hardware and ball and claw feet"
+                 width="2020" height="2172" loading="lazy" decoding="async">
+            <span class="tx__tag tx__tag--after">After</span>
+          </div>
+        </div>
+        <figcaption class="tx__cap">
+          <h3>Hundred-year-old secretary desk</h3>
+          <p>Serpentine drawer fronts refinished and the original brass cleaned and refitted, with the ball and claw feet brought back to match.</p>
+        </figcaption>
+      </figure>
 
-        <figure class="pair reveal">
-          <div class="pair__imgs">
-            <div class="fig fig--2x3">
-              <img src="assets/images/transformations/EA-nightstand-before.webp"
-                   alt="Mahogany nightstand before restoration, with a scratched and paint marked top"
-                   width="1078" height="1346" loading="lazy" decoding="async">
-              <span class="pair__tag">Before</span>
-            </div>
-            <div class="fig fig--2x3">
-              <img class="obj-top" src="assets/images/transformations/EA-nightstand-after.webp"
-                   alt="The same nightstand after being stripped and refinished, with polished brass swan neck pulls"
-                   width="2252" height="4000" loading="lazy" decoding="async">
-              <span class="pair__tag pair__tag--after">After</span>
-            </div>
+      <figure class="tx__row reveal">
+        <div class="tx__imgs">
+          <div class="fig fig--2x3">
+            <img src="assets/images/transformations/EA-nightstand-before.webp"
+                 alt="Mahogany nightstand before restoration, with a scratched and paint marked top"
+                 width="1078" height="1346" loading="lazy" decoding="async">
+            <span class="tx__tag">Before</span>
           </div>
-          <figcaption class="pair__caption">
-            Mahogany nightstand. The top taken back to bare wood and refinished,
-            original brass polished.
-          </figcaption>
-        </figure>
+          <div class="fig fig--2x3">
+            <img class="obj-top" src="assets/images/transformations/EA-nightstand-after.webp"
+                 alt="The same nightstand after being stripped and refinished, with polished brass swan neck pulls"
+                 width="2252" height="4000" loading="lazy" decoding="async">
+            <span class="tx__tag tx__tag--after">After</span>
+          </div>
+        </div>
+        <figcaption class="tx__cap">
+          <h3>Mahogany nightstand</h3>
+          <p>The top taken back to bare wood and refinished, and the original brass polished and put back where it started.</p>
+        </figcaption>
+      </figure>
 
-        <figure class="pair reveal">
-          <div class="pair__imgs">
-            <div class="fig fig--1x1">
-              <img src="assets/images/transformations/combo-before.webp"
-                   alt="Matching tallboy and nightstand before restoration, original finish worn and taped for transport"
-                   width="1047" height="915" loading="lazy" decoding="async">
-              <span class="pair__tag">Before</span>
-            </div>
-            <div class="fig fig--1x1">
-              <img src="assets/images/transformations/combo-after.webp"
-                   alt="The same tallboy and nightstand redesigned in deep navy with new hardware, styled in a bedroom"
-                   width="1080" height="1048" loading="lazy" decoding="async">
-              <span class="pair__tag pair__tag--after">After</span>
-            </div>
+      <figure class="tx__row reveal">
+        <div class="tx__imgs">
+          <div class="fig fig--1x1">
+            <img src="assets/images/transformations/combo-before.webp"
+                 alt="Matching tallboy and nightstand before restoration, original finish worn and taped for transport"
+                 width="1047" height="915" loading="lazy" decoding="async">
+            <span class="tx__tag">Before</span>
           </div>
-          <!-- CONFIRM the wood and the finish before this goes live -->
-          <figcaption class="pair__caption">
-            Bedroom set. Tallboy and matching nightstand redesigned in a deep navy
-            with new hardware and a contrasting base.
-          </figcaption>
-        </figure>
+          <div class="fig fig--1x1">
+            <img src="assets/images/transformations/combo-after.webp"
+                 alt="The same tallboy and nightstand redesigned in deep navy with new hardware, styled in a bedroom"
+                 width="1080" height="1048" loading="lazy" decoding="async">
+            <span class="tx__tag tx__tag--after">After</span>
+          </div>
+        </div>
+        <figcaption class="tx__cap">
+          <h3>Bedroom set</h3>
+          <p>Tallboy and matching nightstand redesigned in a deep navy, with new hardware and a contrasting base.</p>
+        </figcaption>
+      </figure>
+
       </div>
 
       <!-- Detail comparison. Both frames were shot from the same spot, which is what makes

@@ -380,26 +380,6 @@ button { font: inherit; color: inherit; }
   .section-head__aside { padding-bottom: 0.6rem; }
 }
 
-/* --- Lead transformation: each side keeps its own proportions, uncropped --- */
-.pair--lead { margin-bottom: clamp(3.5rem, 8vw, 5.5rem); }
-.pair__imgs--natural { align-items: start; gap: clamp(0.5rem, 1.5vw, 1rem); }
-.pair__imgs--natural .fig { aspect-ratio: auto; }
-.pair__imgs--natural .fig img { height: auto; }
-
-/* Side by side, the landscape "before" collapses to about 90px tall on a phone.
-   Stack the lead pair instead so both photos get the full column width.
-   Doubled class: plain .pair__imgs is defined later at equal specificity. */
-@media (max-width: 39.99em) {
-  .pair__imgs.pair__imgs--natural { grid-template-columns: 1fr; gap: 0.5rem; }
-}
-
-.pair__caption--lead {
-  font-size: 1.0625rem;
-  max-width: 60ch;
-  padding-top: 1.375rem;
-}
-.pair__caption--lead strong { font-weight: 500; color: var(--ink); }
-
 /* --- Before/after drag slider --- */
 .ba { --ba-pos: 50%; margin-bottom: clamp(3.5rem, 8vw, 6rem); }
 
@@ -524,19 +504,31 @@ button { font: inherit; color: inherit; }
   .ba__hint { display: block; margin: 1.5rem 0 0; }
 }
 
-/* --- Supporting pairs --- */
-.pairs {
-  display: grid;
-  gap: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
-  /* pairs use different frame ratios so no photo gets cropped badly , 
-     top-align them rather than stretching to a shared height */
-  align-items: start;
-}
-.pair__imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.pair__imgs .fig { position: relative; }
-.pair:hover .fig img { transform: scale(1.03); }
+/* --- Transformation rows -------------------------------------------------
+   Each pair is a full-width band: before and after side by side at a shared
+   ratio, caption offset to the right. Rows differ in height because the
+   photographs do, but every row starts and ends on the same edges, so the
+   section reads as a sequence rather than a scatter.
+   -------------------------------------------------------------------------- */
+.tx { margin-bottom: clamp(3.5rem, 8vw, 6rem); }
 
-.pair__tag {
+.tx__row {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+  border-top: 1px solid var(--rule);
+}
+.tx__row:last-child { border-bottom: 1px solid var(--rule); }
+
+.tx__imgs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.tx__imgs .fig { position: relative; }
+.tx__row:hover .fig img { transform: scale(1.03); }
+
+.tx__tag {
   position: absolute;
   left: 0; top: 0;
   padding: 0.5rem 0.75rem;
@@ -547,20 +539,33 @@ button { font: inherit; color: inherit; }
   background: var(--ivory);
   color: var(--ink);
 }
-.pair__tag--after { background: var(--deep-olive); color: var(--ivory); }
+.tx__tag--after { background: var(--deep-olive); color: var(--ivory); }
 
-.pair__caption {
-  margin-top: 1.125rem;
-  padding-top: 1.125rem;
-  border-top: 1px solid var(--rule-soft);
+.tx__cap h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
+  margin-bottom: 0.625rem;
+}
+.tx__cap p {
   font-size: 0.9375rem;
+  line-height: 1.65;
   color: var(--ink-soft);
+  max-width: 40ch;
 }
 
-@media (min-width: 48em) {
-  .pairs { grid-template-columns: 1fr 1fr; }
-  /* Offset alternating pairs so the grid never reads as a card row */
-  .pairs .pair:nth-child(even) { margin-top: clamp(2rem, 5vw, 4.5rem); }
+/* Side by side, the landscape pair drops to about 109px tall on a phone, which
+   is too small to read wear on a finish. Give that row full width instead. */
+@media (max-width: 47.99em) {
+  .tx__row--wide .tx__imgs { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 62em) {
+  .tx__row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+  .tx__cap { padding-top: 0.375rem; }
 }
 
 /* ==========================================================================
