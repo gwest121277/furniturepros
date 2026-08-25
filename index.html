@@ -15,14 +15,14 @@
 <meta property="og:title" content="Love Your Furniture Again. | Furniture Pros">
 <meta property="og:description" content="Furniture restoration, refinishing, and repair serving Roseville, Sacramento &amp; surrounding areas. Send us a photo and we'll tell you what your piece needs.">
 <meta property="og:url" content="https://furniturepros.shop/">
-<meta property="og:image" content="https://furniturepros.shop/assets/images/transformations/pine-dresser-after.webp">
+<meta property="og:image" content="https://furniturepros.shop/assets/images/hero/desktop-hero.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Love Your Furniture Again. | Furniture Pros">
 <meta name="twitter:description" content="Furniture restoration and refinishing in Roseville &amp; Sacramento. Send us a photo for a quote.">
-<meta name="twitter:image" content="https://furniturepros.shop/assets/images/transformations/pine-dresser-after.webp">
+<meta name="twitter:image" content="https://furniturepros.shop/assets/images/hero/desktop-hero.webp">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,7 @@
   "url": "https://furniturepros.shop/",
   "telephone": "+1-916-893-7467",
   "email": "FurniturePros.lincoln@gmail.com",
-  "image": "https://furniturepros.shop/assets/images/transformations/pine-dresser-after.webp",
+  "image": "https://furniturepros.shop/assets/images/hero/desktop-hero.webp",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
@@ -153,40 +153,49 @@
 
 <main id="main">
 
-  <!-- ===== 1 · HERO ===================================================== -->
-  <section class="hero">
-    <div class="shell hero__inner">
+  <!-- ===== 1 · HERO =====================================================
+       The banner artwork carries the headline, body copy and CTA as pixels.
+       Google and screen readers cannot read pixels, so the same wording is
+       repeated below as real text (sr-only). It is identical to what the image
+       shows, so this is an accessibility measure, not cloaking.
+       The banner also *depicts* a button, so the whole thing links to the form
+       — otherwise people tap the picture of a button and nothing happens.
+  ====================================================================== -->
+  <section class="hero hero--banner">
 
-      <div class="hero__copy reveal">
-        <p class="eyebrow">Furniture Restoration &amp; Refinishing · Roseville &amp; Sacramento</p>
+    <a class="hero__banner" href="#quote" aria-label="Send us a photo and get a quote">
+      <picture>
+        <source media="(max-width: 61.99em)"
+                srcset="assets/images/hero/mobile-hero.webp"
+                width="941" height="1672">
+        <img src="assets/images/hero/desktop-hero.webp"
+             alt="A worn chest of drawers shown before restoration beside the same chest refinished, styled in a warm living room"
+             width="1672" height="941" fetchpriority="high" decoding="async">
+      </picture>
+    </a>
 
-        <h1 class="hero__title">Love Your<br>Furniture Again.</h1>
+    <h1 class="sr-only">Love Your Furniture Again.</h1>
+    <p class="sr-only">
+      Furniture Pros restores, refinishes, and redesigns furniture so you can keep
+      the pieces you love and make them beautiful again. Furniture restoration,
+      refinishing and repair serving Roseville and Sacramento, California.
+    </p>
 
-        <p class="hero__lede">
-          You already own the piece worth keeping. Furniture Pros restores, refinishes,
-          repairs, and redesigns solid wood furniture for homes across Roseville,
-          Sacramento, and the surrounding foothills.
-        </p>
+    <div class="shell hero__below">
+      <p class="eyebrow">Furniture Restoration &amp; Refinishing · Roseville &amp; Sacramento</p>
 
+      <div class="hero__actions">
         <div class="hero__cta">
           <a class="btn btn--solid" href="#quote">Send Us a Photo</a>
           <a class="link-arrow" href="#transformations">View Transformations</a>
         </div>
-
         <p class="hero__note">
-          Send a few photos and a short description. We&rsquo;ll tell you what the piece
-          needs and what it costs.
+          Send a few photos and a short description. We&rsquo;ll tell you what the
+          piece needs and what it costs.
         </p>
       </div>
-
-      <figure class="hero__figure fig fig--1x1 reveal">
-        <img src="assets/images/transformations/pine-dresser-after.webp"
-             alt="Pine dresser refinished by Furniture Pros with a natural wood top and deep green body, in a Roseville home"
-             width="2992" height="2992" fetchpriority="high" decoding="async">
-        <figcaption class="fig__stamp">Restored, not replaced</figcaption>
-      </figure>
-
     </div>
+
   </section>
 
   <!-- ===== 2 · TRANSFORMATION PROOF ===================================== -->

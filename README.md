@@ -56,6 +56,22 @@ and that you land on the thank-you page.
 
 ---
 
+## The hero banner
+
+The hero is your own banner artwork (`assets/images/hero/`), served as a
+`<picture>`: the portrait version on phones and tablets, the landscape version at
+992px and wider.
+
+Because the headline, body copy and CTA are baked into those images as pixels,
+Google and screen readers can't read them. So the same wording also sits in the
+page as invisible `sr-only` text, and there's a real tappable button below the
+banner. The banner itself links to the form, since the artwork shows a button and
+people will tap it.
+
+**If you edit a banner, edit the `sr-only` text in `index.html` to match.**
+
+---
+
 ## How the photo upload works
 
 Netlify Forms has two limits that shaped this:
@@ -91,9 +107,9 @@ submission that arrives with it filled in.
 **Copy** — all text lives directly in `index.html`. Search for the section
 comments (`1 · HERO`, `2 · TRANSFORMATION PROOF`, and so on).
 
-**Photos** — see [`assets/images/README.md`](assets/images/README.md) for exact
-filenames and crop sizes. Drop a correctly named file in and it appears; no
-code change needed. Until then a warm tonal placeholder holds the space.
+**Photos** — see [`assets/images/README.md`](assets/images/README.md) for what's
+wired where, and for the naming convention when you add a new before/after pair.
+Four real projects are on the page; no placeholders remain.
 
 **Phone and email** — `916-893-7467` and `FurniturePros.lincoln@gmail.com`
 appear in the header, footer, form, thank-you page, and the `LocalBusiness`

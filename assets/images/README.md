@@ -6,13 +6,40 @@ Four real projects are wired in. Nothing here is a placeholder.
 
 | Photo | Where it appears |
 |---|---|
-| `pine-dresser-after.webp` | Hero image, lead transformation, social share card |
+| `hero/desktop-hero.webp` | Hero banner, 992px and wider · social share card |
+| `hero/mobile-hero.webp` | Hero banner, phones and tablets under 992px |
+| `pine-dresser-after.webp` | Lead transformation |
 | `pine-dresser-before.webp` | Lead transformation |
 | `100-year-old-desk-before/after.webp` | Before/after grid |
 | `EA-nightstand-before/after.webp` | Before/after grid |
 | `EA-nightstand-after.webp` | Featured project (section 4) |
 | `desk-leg-before/after.webp` | Drag-to-compare detail slider |
 | `desk-leg-after.webp` | Craftsmanship detail (section 3) |
+
+### About the hero banners
+
+Both banners have the headline, body copy, CTA and service strip baked in as
+pixels. Search engines and screen readers can't read pixels, so the same wording
+is repeated in the page as invisible text (`sr-only`) — identical to what the
+image shows, which keeps the H1 and hero copy working for local SEO. There's
+also a real, tappable "Send Us a Photo" button below the banner, and the banner
+itself links to the form, because the artwork depicts a button and people will
+tap it.
+
+**Why the breakpoint is 992px, not 768px.** The desktop banner is 1672px wide.
+Rendered on a 768px tablet, its service-strip text scales down to about 8px —
+unreadable. So tablets get the portrait banner instead, capped at 544px wide so
+it doesn't run over 1300px tall. Its background is warm ivory, the same as the
+page, so it reads as floating rather than boxed.
+
+**If you ever edit the banners, edit the page text to match.** The invisible
+text and the pixels need to say the same thing.
+
+A third banner cropped for tablet (roughly 4:3, around 1200 × 900, text sized to
+stay readable at 768px) would let tablets use a landscape layout. Optional — most
+traffic is phone and desktop, and both are already right.
+
+---
 
 Each photo is cropped by CSS `object-fit`, and the crops have been checked so no
 piece of furniture gets cut off. If you swap a file, keep roughly the same shape
@@ -45,7 +72,7 @@ The files are still here; nothing has been deleted.
 
 ## Photos that would strengthen the page
 
-Three shots would each make a visible difference, in priority order:
+In priority order:
 
 **1. Hands actually working** — sanding, staining, brushing on finish, fitting
 hardware. Close and tactile, wood grain visible. This is the single most
@@ -55,15 +82,13 @@ replace the carved-foot close-up in section 3.
 - Crop: 4:5 vertical · Export around 1200 × 1500
 
 **2. A second room-styled "after"** — like the pine dresser, a finished piece in
-an actual room rather than a garage or driveway. Warm light, no flash.
+an actual room rather than a garage or driveway. Warm light, no flash. Would give
+the featured-project section its own image instead of reusing the nightstand.
 
 - Crop: 4:5 vertical or square · Export around 1400 × 1750
 
-**3. A dedicated social share image** — currently the pine dresser is reused,
-which works, but a purpose-cropped version would frame better when the link is
-texted or posted.
-
-- Crop: exactly 1.91:1 · Export exactly 1200 × 630 · save as `og/og-image.jpg`
+**3. A tablet banner** — see the note above. Only worth doing if you see real
+tablet traffic.
 
 ---
 

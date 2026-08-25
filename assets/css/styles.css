@@ -314,39 +314,32 @@ button { font: inherit; color: inherit; }
 /* ==========================================================================
    1 · Hero
    ========================================================================== */
-.hero {
-  padding-top: clamp(2.5rem, 6vw, 5rem);
-  padding-bottom: clamp(3rem, 7vw, 6rem);
-}
+.hero--banner { padding: 0 0 clamp(2rem, 5vw, 3.5rem); }
 
-.hero__inner {
-  display: grid;
-  gap: clamp(2.5rem, 6vw, 4.5rem);
-  align-items: center;
-}
+/* Full-bleed banner. It is a link because the artwork shows a button. */
+.hero__banner { display: block; line-height: 0; }
+.hero__banner img { width: 100%; height: auto; }
 
-.hero__title {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 1.6rem + 6.2vw, 6.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.022em;
-  margin-bottom: 1.75rem;
+/* The desktop banner's text is baked into the image, so below ~1000px it scales
+   down to about 8px and stops being readable. Tablets get the portrait banner
+   instead — but full width it would run over 1300px tall, so cap it. Its own
+   background is warm ivory, so it reads as floating on the page rather than
+   boxed. */
+@media (min-width: 48em) and (max-width: 61.99em) {
+  .hero__banner img { max-width: 34rem; margin-inline: auto; }
 }
+.hero__banner:focus-visible { outline: 2px solid var(--olive); outline-offset: -4px; }
 
-.hero__lede {
-  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
-  line-height: 1.6;
-  color: var(--ink-soft);
-  max-width: 46ch;
-  margin-bottom: 2.5rem;
-}
+.hero__below { padding-top: clamp(1.5rem, 3.5vw, 2.5rem); }
+.hero__below .eyebrow { margin-bottom: 1.25rem; }
+
+.hero__actions { display: grid; gap: 1.5rem; }
 
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem 2.25rem;
-  margin-bottom: 2rem;
 }
 
 .hero__note {
@@ -354,23 +347,20 @@ button { font: inherit; color: inherit; }
   line-height: 1.6;
   color: var(--ink-faint);
   max-width: 40ch;
-  padding-top: 1.75rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule-soft);
 }
 
-/* No max-height here: capping the block size against `aspect-ratio: 4/5` makes
-   the browser shrink the *width* to keep the ratio, which defeats the bleed
-   below and leaves a gap at the right edge. The 4:5 crop governs instead, and
-   the photo is allowed to run past the fold — it reads as editorial. */
-
-@media (min-width: 62em) {
-  .hero__inner {
-    grid-template-columns: 1.02fr 0.98fr;
-    gap: clamp(3rem, 5vw, 5.5rem);
+@media (min-width: 48em) {
+  .hero__actions {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2.5rem;
   }
-  /* Bleed the hero photo to the right edge — editorial, not boxed */
-  .hero__figure {
-    margin-right: calc((var(--vw) - min(var(--vw), var(--shell))) / -2 - var(--gutter));
+  .hero__note {
+    padding: 0.25rem 0 0.25rem 2.5rem;
+    border-top: 0;
+    border-left: 1px solid var(--rule-soft);
   }
 }
 
