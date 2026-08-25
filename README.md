@@ -1,4 +1,4 @@
-# Furniture Pros — Landing Page
+# Furniture Pros: Landing Page
 
 One-page landing site for **Furniture Pros**, furniture restoration and
 refinishing serving Roseville, Sacramento, and surrounding areas.
@@ -7,7 +7,7 @@ refinishing serving Roseville, Sacramento, and surrounding areas.
 **Slogan:** Love Your Furniture Again.
 
 Static HTML, CSS, and vanilla JavaScript. No build step, no dependencies, no
-framework. Art direction follows [`design.md`](design.md) — treat that file as
+framework. Art direction follows [`design.md`](design.md), treat that file as
 the controlling design authority for any future change.
 
 ---
@@ -19,7 +19,7 @@ index.html            The landing page
 thank-you.html        Post-submission confirmation
 assets/css/styles.css All styling
 assets/js/main.js     Photo compression, form, before/after slider, reveals
-assets/images/        Your photos — see assets/images/README.md for names
+assets/images/        Your photos, see assets/images/README.md for names
 netlify.toml          Publish settings + security headers
 robots.txt            Crawl rules
 sitemap.xml           Search engine index hints
@@ -36,7 +36,7 @@ design.md             Art direction brief
    (`netlify.toml` already sets this)
 4. Deploy
 
-### After the first deploy — two things you must do in the dashboard
+### After the first deploy, two things you must do in the dashboard
 
 **1. Turn on form notifications.** This cannot be set from code.
 
@@ -44,7 +44,7 @@ design.md             Art direction brief
 > Email notification → send to **FurniturePros.lincoln@gmail.com**
 
 Without this, submissions still arrive but only appear inside the Netlify
-dashboard — no email lands in your inbox.
+dashboard, no email lands in your inbox.
 
 **2. Point the domain.** Domain management → Add a domain → `furniturepros.shop`
 
@@ -91,7 +91,7 @@ If a browser can't decode an image (some HEIC cases), the original file is sent
 unchanged rather than dropped. If the total still exceeds ~7.2 MB, the visitor
 is told which photo to remove instead of getting a silent failure.
 
-The form also degrades without JavaScript — it falls back to a normal POST,
+The form also degrades without JavaScript, it falls back to a normal POST,
 though large photos may then hit the 8 MB ceiling.
 
 ### Spam protection
@@ -104,18 +104,18 @@ submission that arrives with it filled in.
 
 ## Editing content
 
-**Copy** — all text lives directly in `index.html`. Search for the section
+**Copy.** All text lives directly in `index.html`. Search for the section
 comments (`1 · HERO`, `2 · TRANSFORMATION PROOF`, and so on).
 
-**Photos** — see [`assets/images/README.md`](assets/images/README.md) for what's
+**Photos.** See [`assets/images/README.md`](assets/images/README.md) for what's
 wired where, and for the naming convention when you add a new before/after pair.
 Four real projects are on the page; no placeholders remain.
 
-**Phone and email** — `916-893-7467` and `FurniturePros.lincoln@gmail.com`
+**Phone and email.** `916-893-7467` and `FurniturePros.lincoln@gmail.com`
 appear in the header, footer, form, thank-you page, and the `LocalBusiness`
 schema. Search both HTML files if either ever changes.
 
-**Colors and type** — every color is a CSS custom property at the top of
+**Colors and type.** Every color is a CSS custom property at the top of
 `styles.css`. Change one value there and it updates everywhere.
 
 ### Things deliberately left out
@@ -128,7 +128,7 @@ section. If you gather real reviews, the natural place for them is between
 Two spots are marked with HTML comments and are worth filling in when you can:
 
 - A specific response time on `thank-you.html` ("we reply within one business
-  day") — a real promise converts, a vague one doesn't
+  day"), a real promise converts, a vague one doesn't
 - Pickup/delivery, turnaround, and warranty FAQs in `index.html`, once those
   policies are settled
 
@@ -150,7 +150,7 @@ Then open http://localhost:3000.
 
 ## Local SEO
 
-Targets commercial-intent local searches — people looking to hire, not to
+Targets commercial-intent local searches, people looking to hire, not to
 research.
 
 **Primary:** furniture restoration Roseville CA · furniture refinishing
@@ -163,7 +163,7 @@ image alt text, and two JSON-LD blocks: a `LocalBusiness` configured as a
 service-area business (`areaServed` lists ten cities, no street address
 published) and a `FAQPage` matching the on-page questions.
 
-The H1 stays the slogan — the keyword weight sits in the surrounding hero copy
+The H1 stays the slogan, the keyword weight sits in the surrounding hero copy
 so search targeting and art direction don't fight each other.
 
 ---
@@ -171,7 +171,7 @@ so search targeting and art direction don't fight each other.
 ## Accessibility
 
 - All 105 text elements verified against **WCAG 2.1 AA** contrast
-- Before/after slider is a styled `input[type=range]` — drag *and* arrow keys
+- Before/after slider is a styled `input[type=range]`, drag *and* arrow keys
 - Every form field labelled, with inline errors and an `aria-live` status region
 - Skip link, visible focus rings, `prefers-reduced-motion` honored
 

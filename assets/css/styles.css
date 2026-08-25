@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Furniture Pros — Landing Page
+   Furniture Pros: Landing Page
    Art direction per design.md: warm ivory ground, editorial asymmetry,
    photography and typography doing the work. No cards, no shadows, no gradients.
    ========================================================================== */
 
 /* ---- Tokens ------------------------------------------------------------- */
 :root {
-  /* Palette — design.md */
+  /* Palette from design.md */
   --ivory:        #F2EBDD;
   --parchment:    #E4D9C6;
   --olive:        #46553A;
@@ -66,7 +66,7 @@ body {
 
 h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1.06; }
 p { margin: 0; }
-/* figure carries a 40px side margin by default — it silently shrinks every
+/* figure carries a 40px side margin by default, it silently shrinks every
    before/after image and knocks the pair columns out of alignment */
 figure, figcaption, dl, dd { margin: 0; }
 ol, ul { margin: 0; padding: 0; list-style: none; }
@@ -322,7 +322,7 @@ button { font: inherit; color: inherit; }
 
 /* The desktop banner's text is baked into the image, so below ~1000px it scales
    down to about 8px and stops being readable. Tablets get the portrait banner
-   instead — but full width it would run over 1300px tall, so cap it. Its own
+   instead, but full width it would run over 1300px tall, so cap it. Its own
    background is warm ivory, so it reads as floating on the page rather than
    boxed. */
 @media (min-width: 48em) and (max-width: 61.99em) {
@@ -528,7 +528,7 @@ button { font: inherit; color: inherit; }
 .pairs {
   display: grid;
   gap: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
-  /* pairs use different frame ratios so no photo gets cropped badly —
+  /* pairs use different frame ratios so no photo gets cropped badly , 
      top-align them rather than stretching to a shared height */
   align-items: start;
 }
@@ -666,15 +666,8 @@ button { font: inherit; color: inherit; }
   padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
   border-top: 1px solid var(--rule-light);
 }
-.plan__num {
-  display: block;
-  font-family: var(--serif);
-  font-size: 1rem;
-  color: var(--brass-light);
-  margin-bottom: 1rem;
-  font-variant-numeric: tabular-nums;
-}
 .plan__step h3 {
+  margin-top: 0.25rem;
   font-family: var(--serif);
   font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
   color: var(--ivory);
@@ -721,7 +714,7 @@ button { font: inherit; color: inherit; }
   max-width: 44ch;
 }
 
-/* FAQ — editorial list, not an accordion */
+/* FAQ: editorial list, not an accordion */
 .faq { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 .faq__item { padding-block: 1.375rem; border-top: 1px solid var(--rule-soft); }
 .faq__item:last-child { border-bottom: 1px solid var(--rule-soft); }
@@ -791,7 +784,7 @@ button { font: inherit; color: inherit; }
 }
 .field.has-error .field__err { display: block; }
 
-/* Honeypot — off-screen, never display:none */
+/* Honeypot: off-screen, never display:none */
 .hp-field {
   position: absolute !important;
   left: -9999px !important;
@@ -926,7 +919,7 @@ button { font: inherit; color: inherit; }
 .site-footer__col a { text-decoration: none; }
 .site-footer__col a:hover { color: var(--ivory); }
 /* .link-arrow defaults to dark ink, which is invisible on the dark walnut
-   footer — scope it here so it can't be missed on a new footer link */
+   footer, scope it here so it can't be missed on a new footer link */
 .site-footer .link-arrow { color: var(--ivory); }
 .site-footer__areas { line-height: 1.8; max-width: 34ch; }
 

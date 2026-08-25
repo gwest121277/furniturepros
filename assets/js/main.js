@@ -1,11 +1,11 @@
 /* ==========================================================================
-   Furniture Pros — landing page behavior
+   Furniture Pros: landing page behavior
 
-   1. Image fallback     — tonal placeholder when a photo isn't in place yet
-   2. Sticky header      — hairline rule appears once the page scrolls
-   3. Reveals            — restrained fade/rise on section entry
-   4. Before/after       — drag + keyboard comparison slider
-   5. Quote form         — validation, previews, in-browser photo compression,
+   1. Image fallback:      tonal placeholder when a photo isn't in place yet
+   2. Sticky header:       hairline rule appears once the page scrolls
+   3. Reveals:             restrained fade/rise on section entry
+   4. Before/after:        drag + keyboard comparison slider
+   5. Quote form:          validation, previews, in-browser photo compression,
                            AJAX submit to Netlify Forms
 
    Why compression: Netlify caps a form submission at 8MB total and does not
@@ -98,7 +98,7 @@
     items.forEach(function (el) { io.observe(el); });
 
     // Failsafe. The reveal transition starts every element at opacity 0, so an
-    // observer that never fires would leave the page blank — which happens when
+    // observer that never fires would leave the page blank, which happens when
     // a tab is opened in the background and never focused. Reveal anything
     // already on screen, and give up on the animation entirely if the observer
     // still hasn't reported anything shortly after load.
@@ -181,7 +181,7 @@
         }, 'image/jpeg', JPEG_QUALITY);
       });
     }).catch(function () {
-      return file; // undecodable — send it as-is rather than dropping it
+      return file; // undecodable, send it as-is rather than dropping it
     });
   }
 
@@ -347,9 +347,9 @@
         if (total > MAX_PAYLOAD) {
           setBusy(false);
           setStatus(
-            'Those photos are still too large to send together (' +
-            formatBytes(total) + '). Please remove one and try again — ' +
-            'or call ' + PHONE + ' and we’ll sort it out.',
+            'Those photos need a second trip (' + formatBytes(total) + ' together). ' +
+            'Remove one and send it on its own, or text them to ' + PHONE +
+            ' and we’ll take it from there.',
             'is-error'
           );
           return null;
@@ -371,8 +371,8 @@
       }).catch(function () {
         setBusy(false);
         setStatus(
-          'Something went wrong sending that. Please try again, or call ' +
-          PHONE + ' — we’d rather hear from you than lose the message.',
+          'That didn’t send. Please try once more, or text your photos to ' +
+          PHONE + ' and we’ll pick it up from there.',
           'is-error'
         );
       });

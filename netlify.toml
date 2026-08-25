@@ -1,4 +1,4 @@
-# Furniture Pros — Netlify configuration
+# Furniture Pros: Netlify configuration
 # Static site, no build step. Netlify parses index.html at deploy time to
 # register the "furniture-quote" form.
 
