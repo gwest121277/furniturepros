@@ -773,9 +773,10 @@ button { font: inherit; color: inherit; }
   place-items: center;
   width: 1.75rem;
   height: 1.75rem;
-  border: 1px solid var(--walnut);
+  border: 1px solid var(--cta-edge);
   border-radius: 50%;
-  color: var(--walnut);
+  background: var(--cta);
+  color: var(--cta-ink);
   font-size: 1.25rem;
   line-height: 1;
 }
@@ -795,7 +796,7 @@ button { font: inherit; color: inherit; }
   justify-content: center;
   gap: 0.5rem;
   aspect-ratio: 1;
-  border: 1px dashed rgba(41, 37, 31, 0.28);
+  border: 2px dashed rgba(41, 37, 31, 0.6);
   border-radius: var(--radius);
   background: var(--ivory);
   cursor: pointer;
@@ -804,9 +805,23 @@ button { font: inherit; color: inherit; }
   color: var(--ink-soft) !important;
   transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
-.slot__label:hover { border-color: var(--olive); background: #F7F2E7; }
+.slot__label:hover { border-color: var(--cta-edge); background: #F7F2E7; }
 .slot__input:focus-visible + .slot__label { outline: 2px solid var(--olive); outline-offset: 2px; }
-.slot__icon { font-size: 2.25rem; line-height: 1; color: var(--walnut); }
+/* A bare "+" does not read as a button to someone who has not met one. Give it
+   the same orange as every other call to action on the page. */
+.slot__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--cta);
+  border: 1px solid var(--cta-edge);
+  color: var(--cta-ink);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1;
+}
 .slot__text { font-size: 0.8125rem; letter-spacing: 0.08em; }
 
 .slot__preview { position: relative; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; }
