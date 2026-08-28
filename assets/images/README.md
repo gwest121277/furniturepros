@@ -12,9 +12,8 @@ Five projects are wired in. Nothing here is a placeholder.
 | `pine-dresser-before.webp` | Lead transformation |
 | `100-year-old-desk-before/after.webp` | Before/after grid |
 | `EA-nightstand-before/after.webp` | Before/after grid |
-| `EA-nightstand-after.webp` | Featured project (section 4) |
 | `desk-leg-before/after.webp` | Before/after grid, carved foot detail |
-| `desk-leg-after.webp` | Craftsmanship detail (section 3) |
+| `desk-leg-after.webp` | Craftsmanship detail, What We Do section |
 | `combo-before/after.webp` | Before/after grid |
 | `og/social-share.webp` | Social share card (link previews) |
 
@@ -54,7 +53,7 @@ single shared ratio would badly crop something:
 |---|---|---|
 | pine dresser | 3:2 | 1.78 and 1.00, the widest safe ratio that keeps the whole dresser in the before shot |
 | secretary desk | 1:1 | 0.97 and 0.93, already near square |
-| nightstand | 2:3 | 0.80 and 0.56, only a tall frame keeps the feet |
+| Ethan Allen nightstand | 2:3 | 0.80 and 0.56, only a tall frame keeps the feet |
 | bedroom set | 1:1 | 1.14 and 1.03, near square |
 | carved foot | 2:3 | 0.56 both, the one pair shot from a fixed position |
 
@@ -113,8 +112,7 @@ replace the carved-foot close-up in section 3.
 - Crop: 4:5 vertical · Export around 1200 × 1500
 
 **2. A second room-styled "after".** Like the pine dresser, a finished piece in
-an actual room rather than a garage or driveway. Warm light, no flash. Would give
-the featured-project section its own image instead of reusing the nightstand.
+an actual room rather than a garage or driveway. Warm light, no flash.
 
 - Crop: 4:5 vertical or square · Export around 1400 × 1750
 

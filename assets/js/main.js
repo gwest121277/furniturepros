@@ -174,7 +174,7 @@
 
     var statusEl = $('[data-status]', form);
     var submitBtn = $('[data-submit]', form);
-    var defaultLabel = submitBtn ? submitBtn.textContent : 'Send Us a Photo';
+    var defaultLabel = submitBtn ? submitBtn.textContent : 'Click to Send Photos';
 
     /* ---- photo slots ---- */
     $$('[data-slot]', form).forEach(function (slot) {

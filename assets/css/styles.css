@@ -15,6 +15,16 @@
   --dark-walnut:  #34251C;
   --brass:        #A38655;
   --brass-light:  #C4A87A;   /* brass on deep olive / dark walnut, for AA */
+
+  /* Call to action. Bright warm orange against the olive and ivory so it reads
+     as the one thing to press. Dark ink on it rather than ivory: at this
+     brightness ivory only reaches 2.5:1, while ink reaches 5.07:1. */
+  --cta:          #E07A28;
+  --cta-hover:    #C96716;
+  --cta-ink:      #29251F;
+  /* The fill alone is only 2.53:1 against ivory, so the button's own edge would
+     not be identifiable. This border clears 3:1 on ivory and on parchment. */
+  --cta-edge:     #B85A10;
   --ink:          #29251F;
 
   /* Derived */
@@ -142,20 +152,22 @@ button { font: inherit; color: inherit; }
   justify-content: center;
   gap: 0.5rem;
   padding: 1.0625rem 2.125rem;
-  border: 1px solid var(--deep-olive);
+  border: 1px solid var(--cta-edge);
   border-radius: var(--radius);
-  background: var(--deep-olive);
-  color: var(--ivory);
-  font-size: 0.875rem;
-  font-weight: 500;
+  background: var(--cta);
+  color: var(--cta-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
   letter-spacing: 0.075em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.35s var(--ease), color 0.35s var(--ease);
 }
-.btn:hover { background: var(--walnut); border-color: var(--walnut); }
-.btn--sm { padding: 0.75rem 1.375rem; font-size: 0.75rem; }
+.btn:hover { background: var(--cta-hover); border-color: var(--cta-edge); }
+.btn--sm { padding: 0.8125rem 1.5rem; font-size: 0.8125rem; }
+/* Bigger target and bigger type for the form's own submit */
+.btn--lg { padding: 1.375rem 2.125rem; font-size: 1.0625rem; letter-spacing: 0.06em; }
 .btn--block { width: 100%; }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -332,6 +344,14 @@ button { font: inherit; color: inherit; }
 
 .hero__below { padding-top: clamp(1.5rem, 3.5vw, 2.5rem); }
 .hero__below .eyebrow { margin-bottom: 1.25rem; }
+
+/* The H1 keeps the eyebrow's role in the layout, just a little more present */
+.hero__h1 {
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  max-width: 46ch;
+  line-height: 1.5;
+}
 
 .hero__actions { display: grid; gap: 1.5rem; }
 
@@ -577,32 +597,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   5 · Featured work
-   ========================================================================== */
-.section--craft {
-  background: var(--ivory);
-}
-
-.craft__inner { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
-
-.craft__prose { margin-block: 2rem 2.5rem; }
-.craft__prose p { color: var(--ink-soft); max-width: 46ch; }
-.craft__prose p + p { margin-top: 1.25rem; }
-
-@media (min-width: 62em) {
-  .craft__inner {
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: clamp(3.5rem, 7vw, 6.5rem);
-  }
-  /* Bleed the project photo off the left edge */
-  .craft__figure {
-    margin-left: calc((var(--vw) - min(var(--vw), var(--shell))) / -2 - var(--gutter));
-  }
-  .craft__copy { padding-right: clamp(0rem, 3vw, 3rem); }
-}
-
-/* ==========================================================================
-   6 · The plan  (the single dark section)
+   5 · The plan  (the single dark section)
    ========================================================================== */
 .section--plan {
   background: var(--deep-olive);
@@ -659,7 +654,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   7 · Quote form
+   6 · Quote form
    ========================================================================== */
 .section--quote { background: var(--ivory); }
 
@@ -703,9 +698,9 @@ button { font: inherit; color: inherit; }
 .field label,
 .uploads legend {
   display: block;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 0.5rem;
@@ -716,9 +711,9 @@ button { font: inherit; color: inherit; }
 .field input,
 .field textarea {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.0625rem;
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--ink);
   background: var(--ivory);
   border: 1px solid var(--rule);
@@ -751,14 +746,40 @@ button { font: inherit; color: inherit; }
 }
 
 /* --- Upload slots --- */
-.uploads { border: 0; padding: 0; margin: 0.5rem 0 1.75rem; }
+.uploads { border: 0; padding: 0; margin: 1.5rem 0 2rem; }
 .uploads__help {
-  font-size: 0.875rem;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--ink-soft);
-  margin-bottom: 1rem;
-  max-width: 44ch;
+  max-width: 46ch;
 }
-.uploads__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+
+/* Plain instruction, deliberately large and high contrast. Many visitors are
+   65 to 80 and will not assume a dashed square is a button. */
+.uploads__how {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.uploads__plus {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--walnut);
+  border-radius: 50%;
+  color: var(--walnut);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.uploads__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
 
 .slot { position: relative; }
 .slot__input {
@@ -785,8 +806,8 @@ button { font: inherit; color: inherit; }
 }
 .slot__label:hover { border-color: var(--olive); background: #F7F2E7; }
 .slot__input:focus-visible + .slot__label { outline: 2px solid var(--olive); outline-offset: 2px; }
-.slot__icon { font-size: 1.5rem; line-height: 1; color: var(--walnut); }
-.slot__text { font-size: 0.625rem; }
+.slot__icon { font-size: 2.25rem; line-height: 1; color: var(--walnut); }
+.slot__text { font-size: 0.8125rem; letter-spacing: 0.08em; }
 
 .slot__preview { position: relative; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; }
 .slot__preview img { width: 100%; height: 100%; object-fit: cover; }
@@ -818,7 +839,7 @@ button { font: inherit; color: inherit; }
 
 .qform__status {
   margin-top: 1rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   min-height: 1.4em;
 }
 .qform__status.is-error { color: #8C3B2A; }
@@ -925,7 +946,7 @@ button { font: inherit; color: inherit; }
   text-decoration: none;
 }
 .mobile-bar__call { background: var(--ivory); color: var(--ink); }
-.mobile-bar__cta { background: var(--deep-olive); color: var(--ivory); }
+.mobile-bar__cta { background: var(--cta); color: var(--cta-ink); font-weight: 600; }
 
 @media (min-width: 62em) { .mobile-bar { display: none; } }
 @media (max-width: 61.99em) {

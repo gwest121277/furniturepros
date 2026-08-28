@@ -123,6 +123,35 @@ monogram is measured and re-centred automatically rather than positioned by eye.
 
 ---
 
+## Calls to action
+
+Every button uses `--cta`, a bright orange, rather than the olive used elsewhere.
+Two contrast rules apply to a button and they pull in opposite directions:
+
+- The label on the fill needs 4.5:1. Ivory text on this orange only reaches
+  2.5:1, so the label is dark ink instead, at 5.07:1.
+- The button's own edge against the page needs 3:1 under WCAG 1.4.11, or the
+  control is not identifiable. The fill alone is 2.53:1 against ivory, so the
+  border is `--cta-edge`, a darker orange, which clears 3:1 on both the ivory
+  and parchment backgrounds.
+
+Change `--cta` and both of those need rechecking.
+
+---
+
+## Built for older visitors
+
+Much of the customer base is 65 to 80. The form is deliberately larger than the
+rest of the page: 13px field labels rather than 11px, 17px inputs, 16px help
+text, a 36px plus glyph in each upload box, and a submit button around 100px
+tall. There is also a plain instruction, "Click the + below to upload an image
+from your phone", sitting directly above the boxes, because a dashed square is
+not obviously a button to someone who has not met one before.
+
+If you edit the form, keep the type sizes. They are not decorative.
+
+---
+
 ## Editing content
 
 **Copy.** All text lives directly in `index.html`. Search for the section
