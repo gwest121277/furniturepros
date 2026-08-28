@@ -25,6 +25,9 @@
   /* The fill alone is only 2.53:1 against ivory, so the button's own edge would
      not be identifiable. This border clears 3:1 on ivory and on parchment. */
   --cta-edge:     #B85A10;
+  /* Same orange lifted for the dark olive section. The page orange only reaches
+     3.91:1 there, under the 4.5:1 a link at this size needs; this reaches 5.22. */
+  --cta-light:    #EE9A3C;
   --ink:          #29251F;
 
   /* Derived */
@@ -189,6 +192,8 @@ button { font: inherit; color: inherit; }
 .link-arrow::after { content: " \2192"; }
 .link-arrow:hover { background-size: 0% 1px; }
 .link-arrow--light { color: var(--ivory); }
+/* The call to action on the dark section, orange like every other one */
+.link-arrow--cta { color: var(--cta-light); font-weight: 600; }
 
 /* ---- Figures & image fallback ------------------------------------------- */
 .fig {
