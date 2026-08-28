@@ -365,7 +365,69 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   2 · Transformation proof
+   2 · A piece worth saving
+   Long-form prose, so it gets its own column at a comfortable measure with the
+   heading held beside it. Parchment separates it from the ivory either side.
+   ========================================================================== */
+.section--story { background: var(--parchment); }
+
+.story__inner { display: grid; gap: clamp(2.5rem, 6vw, 4rem); }
+
+.story__body > * + * { margin-top: 1.375rem; }
+
+.story__body p {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  /* 62ch measured out at 82 characters a line, past the comfortable range.
+     52ch lands around 69. */
+  max-width: 52ch;
+}
+
+.story__body .story__lead {
+  font-family: var(--serif);
+  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+  line-height: 1.32;
+  color: var(--ink);
+  max-width: 26ch;
+}
+
+/* The hinge of the argument, so it gets weight and a rule to sit against */
+.story__body .story__turn {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 28ch;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  padding-top: clamp(1.75rem, 3.5vw, 2.25rem);
+  border-top: 1px solid var(--rule);
+}
+
+/* Reported speech, not a testimonial: no name, no stars, no card. */
+.story__body .story__quote {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.375rem);
+  line-height: 1.2;
+  color: var(--ink);
+  max-width: 18ch;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  padding-left: clamp(1.125rem, 2vw, 1.75rem);
+  border-left: 2px solid var(--brass);
+}
+
+@media (min-width: 62em) {
+  .story__inner {
+    grid-template-columns: 0.78fr 1.22fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .story__side { position: sticky; top: 7rem; }
+}
+
+/* ==========================================================================
+   3 · Transformation proof
    ========================================================================== */
 .section--proof {
   background: var(--ivory);
@@ -459,7 +521,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   3 · What we do
+   4 · What we do
    ========================================================================== */
 .section--services {
   background: var(--parchment);
@@ -515,7 +577,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   4 · Featured work
+   5 · Featured work
    ========================================================================== */
 .section--craft {
   background: var(--ivory);
@@ -540,7 +602,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   5 · The plan  (the single dark section)
+   6 · The plan  (the single dark section)
    ========================================================================== */
 .section--plan {
   background: var(--deep-olive);
@@ -597,7 +659,7 @@ button { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   6 · Quote form
+   7 · Quote form
    ========================================================================== */
 .section--quote { background: var(--ivory); }
 
